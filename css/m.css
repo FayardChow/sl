@@ -1,0 +1,305 @@
+@charset "UTF-8";
+@import url(javhd-join-m-01.1.css);
+.b-join-title {
+  border: 0;
+  text-align: center;
+  padding: 10px 10px 3px; }
+
+.tariffs {
+  margin-bottom: 12px; }
+  .tariffs__item + .tariffs__item {
+    margin-top: 8px; }
+  .jp .tariffs {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", "メイリオ", Meiryo, "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "HiraKakuPro-W3", "ＭＳ Ｐゴシック", "MS PGothic", Osaka, Verdana, sans-serif; }
+  .zh .tariffs {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", "微软雅黑", "正黑体", SimHei, SimSun, "Pingfang SC", "Heiti SC", STHeiti, STSong, Hei, "Droid Sans Fallback", "Arial Unicode MS", "隶书", "宋体", "WenQuanYi Micro Hei", "文泉驿微米黑", "AR PL UKai CN", sans-serif; }
+  .tw .tariffs {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", "微软雅黑", "正黑体", SimHei, SimSun, "Pingfang SC", "Heiti SC", STHeiti, STSong, Hei, "Droid Sans Fallback", "Arial Unicode MS", "隶书", "宋体", "WenQuanYi Micro Hei", "文泉驿微米黑", "AR PL UKai CN", sans-serif; }
+
+.tariff {
+  display: flex;
+  height: 75px;
+  background: linear-gradient(#80e300 0%, #3ebb00 100%);
+  border-radius: 3px;
+  overflow: hidden; }
+  .tariff:after {
+    visibility: hidden;
+    display: block;
+    content: "";
+    clear: both;
+    height: 0; }
+  .tariff__price {
+    box-sizing: border-box;
+    width: 50%;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    background: #282828;
+    padding-left: 20px;
+    border-radius: 3px 0 0 3px; }
+    .tariff__price:after {
+      position: absolute;
+      top: -1px;
+      left: 100%;
+      content: '';
+      width: 0;
+      height: 0;
+      border-style: solid;
+      border-width: 39px 0 39px 12px;
+      border-color: transparent transparent transparent #282828; }
+    .tariff__price :first-child {
+      margin: auto 0 0; }
+    .tariff__price :last-child {
+      margin: 0 0 auto; }
+  .tariff__call {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    color: #282828;
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0 0 0 36px;
+    border: 0;
+    background: none;
+    text-align: left;
+    cursor: pointer;
+    outline: none;
+    box-sizing: border-box;
+    justify-content: center;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none; }
+    .tariff__call::-moz-focus-inner {
+      border: 0;
+      padding: 0; }
+    .jp .tariff__call {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", "メイリオ", Meiryo, "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "HiraKakuPro-W3", "ＭＳ Ｐゴシック", "MS PGothic", Osaka, Verdana, sans-serif;
+      padding-left: 26px; }
+    .zh .tariff__call {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", "微软雅黑", "正黑体", SimHei, SimSun, "Pingfang SC", "Heiti SC", STHeiti, STSong, Hei, "Droid Sans Fallback", "Arial Unicode MS", "隶书", "宋体", "WenQuanYi Micro Hei", "文泉驿微米黑", "AR PL UKai CN", sans-serif; }
+    .tw .tariff__call {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", "微软雅黑", "正黑体", SimHei, SimSun, "Pingfang SC", "Heiti SC", STHeiti, STSong, Hei, "Droid Sans Fallback", "Arial Unicode MS", "隶书", "宋体", "WenQuanYi Micro Hei", "文泉驿微米黑", "AR PL UKai CN", sans-serif; }
+  .tariff__cost {
+    display: block;
+    font-size: 24px;
+    color: #fff;
+    font-weight: bold;
+    line-height: 1;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3); }
+    .tariff__cost sub {
+      font-size: 12px;
+      vertical-align: bottom; }
+  .tariff__desc {
+    display: block;
+    color: #fff;
+    font-size: 12px;
+    font-weight: bold;
+    line-height: 1.4;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3); }
+    .tariff--purple .tariff__desc {
+      color: #e588ff; }
+    .tariff--green .tariff__desc {
+      color: #79df00; }
+    .tariff--orange .tariff__desc {
+      color: #ffad00; }
+    .tariff--yellow .tariff__desc {
+      color: #ffea00; }
+  .tariff__action {
+    display: block;
+    font-size: 24px;
+    font-weight: bold;
+    line-height: 1; }
+    .jp .tariff__action {
+      font-size: 18px;
+      padding: 4px 0 2px; }
+  .tariff__duration {
+    line-height: 1
+}
+
+.jp .tariff__action {
+    font-size: 18px;
+    padding: 4px 0 2px
+}
+.ms .tariff__action {
+    font-size: 18px;
+}
+.id .tariff__action {
+    font-size: 15px;
+}
+
+.tariff__duration {
+    display: block;
+    font-size: 12px;
+    font-weight: bold;
+    line-height: 1.4; }
+.text-color-pink {
+  color: #e62b4e;
+}
+
+.b-join-info-benefits--ret li {
+  background: url('../images/javhd-join-m-02.3_ret/check-pink.png') left 3px no-repeat;
+  background-size: 13px 10px;
+}
+
+.loader-wrap {
+  display: none;
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  background-color: rgba(255, 255, 255, 0.8);
+  z-index: 10; }
+  .loader-wrap.loading {
+    display: block; }
+
+.loader {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  height: 40px;
+  width: 80px;
+  box-sizing: border-box; }
+  .loader .loader-item {
+    position: relative;
+    float: left;
+    height: 40px;
+    width: 4px;
+    margin: 0 2px;
+    background-color: #46bcff; }
+    .loader .loader-item:nth-child(1) {
+      animation: loader-item-1 2s linear infinite; }
+    .loader .loader-item:nth-child(2) {
+      animation: loader-item-2 2s linear infinite; }
+    .loader .loader-item:nth-child(3) {
+      animation: loader-item-3 2s linear infinite; }
+    .loader .loader-item:nth-child(4) {
+      animation: loader-item-4 2s linear infinite; }
+    .loader .loader-item:nth-child(5) {
+      animation: loader-item-5 2s linear infinite; }
+    .loader .loader-item:nth-child(6) {
+      animation: loader-item-6 2s linear infinite; }
+    .loader .loader-item:nth-child(7) {
+      animation: loader-item-7 2s linear infinite; }
+    .loader .loader-item:nth-child(8) {
+      animation: loader-item-8 2s linear infinite; }
+    .loader .loader-item:nth-child(9) {
+      animation: loader-item-9 2s linear infinite; }
+    .loader .loader-item:nth-child(10) {
+      animation: loader-item-10 2s linear infinite; }
+@keyframes loader-item-1 {
+  1% {
+    transform: scaleY(1); }
+  11% {
+    transform: scaleY(1.4); }
+  21% {
+    transform: scaleY(1); }
+  100% {
+    transform: scaleY(1); } }
+@keyframes loader-item-2 {
+  7% {
+    transform: scaleY(1); }
+  17% {
+    transform: scaleY(1.4); }
+  27% {
+    transform: scaleY(1); }
+  100% {
+    transform: scaleY(1); } }
+@keyframes loader-item-3 {
+  13% {
+    transform: scaleY(1); }
+  23% {
+    transform: scaleY(1.4); }
+  33% {
+    transform: scaleY(1); }
+  100% {
+    transform: scaleY(1); } }
+@keyframes loader-item-4 {
+  19% {
+    transform: scaleY(1); }
+  29% {
+    transform: scaleY(1.4); }
+  39% {
+    transform: scaleY(1); }
+  100% {
+    transform: scaleY(1); } }
+@keyframes loader-item-5 {
+  25% {
+    transform: scaleY(1); }
+  35% {
+    transform: scaleY(1.4); }
+  45% {
+    transform: scaleY(1); }
+  100% {
+    transform: scaleY(1); } }
+@keyframes loader-item-6 {
+  31% {
+    transform: scaleY(1); }
+  41% {
+    transform: scaleY(1.4); }
+  51% {
+    transform: scaleY(1); }
+  100% {
+    transform: scaleY(1); } }
+@keyframes loader-item-7 {
+  37% {
+    transform: scaleY(1); }
+  47% {
+    transform: scaleY(1.4); }
+  57% {
+    transform: scaleY(1); }
+  100% {
+    transform: scaleY(1); } }
+@keyframes loader-item-8 {
+  43% {
+    transform: scaleY(1); }
+  53% {
+    transform: scaleY(1.4); }
+  63% {
+    transform: scaleY(1); }
+  100% {
+    transform: scaleY(1); } }
+@keyframes loader-item-9 {
+  49% {
+    transform: scaleY(1); }
+  59% {
+    transform: scaleY(1.4); }
+  69% {
+    transform: scaleY(1); }
+  100% {
+    transform: scaleY(1); } }
+@keyframes loader-item-10 {
+  55% {
+    transform: scaleY(1); }
+  65% {
+    transform: scaleY(1.4); }
+  75% {
+    transform: scaleY(1); }
+  100% {
+    transform: scaleY(1); } }
+
+.b-join-info--ret {
+  background: url('../images/javhd-join-m-02.3_ret/girl-ret.png') 7px 100% no-repeat;
+  background-size: 139px 342px;
+}
+
+.b-join-title--ret {
+  font-size: 16px;
+  font-weight: bold;
+}
+body.join-valentine .b-join-title--ret:before {
+  background: url("../images/javhd-join-04.1valentine.tpl/heart.png") center no-repeat;
+  width: 20px;
+  height: 17px;
+  background-size: cover;
+  content: '';
+  vertical-align: sub;
+  display: inline-block;
+  margin-right: 5px;
+}

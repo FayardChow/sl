@@ -1,0 +1,102 @@
+@keyframes lds-ellipsis3 {
+    0%, 25% {
+        left: 45px;
+        transform: scale(0);
+    }
+    50% {
+        left: 45px;
+        transform: scale(1);
+    }
+    75% {
+        left: 113px;
+    }
+    100% {
+        left: 181px;
+        transform: scale(1);
+    }
+}
+@keyframes lds-ellipsis2 {
+    0% {
+        transform: scale(1);
+    }
+    25%, 100% {
+        transform: scale(0);
+    }
+}
+@keyframes lds-ellipsis {
+    0% {
+        left: 45px;
+        transform: scale(0);
+    }
+    25% {
+        left: 45px;
+        transform: scale(1);
+    }
+    50% {
+        left: 113px;
+    }
+    75% {
+        left: 181px;
+        transform: scale(1);
+    }
+    100% {
+        left: 181px;
+        transform: scale(0);
+    }
+}
+
+.btn-loader {
+    display: none;
+    height:100%;
+    position: relative;
+    transform: scale(0.5);
+    width:100%;
+}
+
+.loading {
+    font-size: 0!important;
+    line-height: normal!important;
+}
+.loading .tariff__action,
+.loading .tariff__duration {
+    display: none;
+}
+.loading .btn-loader {
+    display: block;
+}
+.btn-loader > div {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    width: 32px;
+    height: 32px;
+}
+.btn-loader div > div {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: #f00;
+    position: absolute;
+    top: 30px;
+    left: 40px;
+    animation: lds-ellipsis 1.6s cubic-bezier(0, 0.5, 0.5, 1) infinite forwards;
+}
+.btn-loader div:nth-child(1) div {
+    animation: lds-ellipsis2 1.6s cubic-bezier(0, 0.5, 0.5, 1) infinite forwards;
+    background: #ffffff;
+}
+.btn-loader div:nth-child(2) div {
+    animation-delay: -0.8s;
+    background: #ffffff;
+}
+.btn-loader div:nth-child(3) div {
+    animation-delay: -0.4s;
+    background: #ffffff;
+}
+.btn-loader div:nth-child(4) div {
+    animation-delay: 0s;
+    background: #ffffff;
+}
+.btn-loader div:nth-child(5) div {
+    animation: lds-ellipsis3 1.6s cubic-bezier(0, 0.5, 0.5, 1) infinite forwards;
+    background: #ffffff;
+}

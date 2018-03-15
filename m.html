@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+    <title>Join Page</title>
+    <link href="/css/m.css" rel="stylesheet" type="text/css" />
+    <link href="/css/m1.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.bootcss.com/jquery/2.0.2/jquery.js"></script>
+    
+    <script type="text/javascript">
+        NodeList.prototype.forEach = Array.prototype.forEach; //hack for IE 11
+        (function() {
+            var get = function(url) {
+                url += '?t=' + Math.random();
+                var div = document.getElementById("hidden");
+                div.innerHTML += "<img src='" + url + "' />";
+            };
+
+            document.addEventListener('DOMContentLoaded', function () {
+                setTimeout(function() {
+                    var div = document.createElement('div');
+                    div.id = 'hidden';
+                    div.style.display = 'none';
+                    document.body.appendChild(div);
+
+                    get('https://join.javhd.com/_prefetch.html');
+                    get('https://purchase.centrobill.com/media/images/ssl.png');
+                }, 500);
+            });
+        })();
+    </script>
+    
+    <script>
+        (function(e, t, n, a, c, i) {
+            e.globicaObjectName = a, e[a] = e[a] || function() {
+                        (e[a].q = e[a].q || []).push(arguments);
+                    }, e[a].i = 1 * new Date(), c = t.createElement("script"), i = t.getElementsByTagName("script")[0],
+                    c.async = 1, c.src = n, i.parentNode.insertBefore(c, i);
+        })(window, document, "https://cdn.analitits.com/gc.js", "gl");
+        gl('params', {
+            'networkname': 'javbucks',
+            'pagetype': 'JOIN_PAGE',
+            'pageid': 'javhd-join-m-02.3',
+            'templatetype': 'mobile',
+            'locale': 'zh',
+            'zone': 'NONAUTHORIZED'
+        });
+        gl('send', 'pageview');
+    </script>
+    
+    
+<script type="text/javascript" defer>
+    document.addEventListener("DOMContentLoaded", function() {
+        gl('function', function (env) {
+            var jsLinks = document.getElementsByClassName('js-gaBtnBilling');
+            if (jsLinks.length > 0) {
+                for (var i = 0; i < jsLinks.length; i++) {
+                    if (jsLinks[i].href !== undefined) {
+                        if(jsLinks[i].href.indexOf('feid') >= 0) {
+                            jsLinks[i].href = jsLinks[i].href.replace(/(feid:)([^|&]*)/, "$1" + env.feid).replace(/(fesid:)([^|&]*)/, "$1" + env.sid);
+                        } else {
+                            var params = [{n: "feid", v: env.feid}, {n: "fesid", v: env.sid}];
+                            var custom2 = jsLinks[i].href.match(/(\[custom2\]=)([^&]*)/) || [];
+                            var c2 = custom2[2].split(':');
+                            if(c2.length > 1) {
+                                params.push({n: c2[0], v: c2[1]});
+                            }
+
+                            var new_custom2 = params.map(function(el) { return el.n + ':' + el.v; }).join('|');
+                            jsLinks[i].href = jsLinks[i].href.replace(/(\[custom2\]=)([^&]*)/, "$1" + new_custom2);
+                        }
+                    }
+                }
+            }
+
+            var inputs = document.getElementsByName('signup[custom2]');
+            if(inputs.length > 0) {
+                for (var i = 0; i < inputs.length; i++) {
+                    if(inputs[i].value.indexOf('feid') >= 0) {
+                        var new_custom2 = inputs[i].value.replace(/(feid:)([^|&]*)/, "$1" + env.feid).replace(/(fesid:)([^|&]*)/, "$1" + env.sid);
+                    } else {
+                        var params = [{n: "feid", v: env.feid}, {n: "fesid", v: env.sid}];
+                        var c2 = inputs[i].value.split(':');
+                        if(c2.length > 1) {
+                            params.push({n: c2[0], v: c2[1]});
+                        }
+                        var new_custom2 = params.map(function(el) { return el.n + ':' + el.v; }).join('|');
+                    }
+                    inputs[i].value = new_custom2;
+                }
+            }
+        });
+    });
+</script>
+
+</head>
+<body class="zh m-02">
+    <div class="loader-wrap">
+        <div class="loader">
+            <span class="loader-item"></span>
+            <span class="loader-item"></span>
+            <span class="loader-item"></span>
+            <span class="loader-item"></span>
+            <span class="loader-item"></span>
+            <span class="loader-item"></span>
+            <span class="loader-item"></span>
+            <span class="loader-item"></span>
+            <span class="loader-item"></span>
+            <span class="loader-item"></span>
+        </div>
+    </div>
+
+    
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-27524386-2', 'auto');
+        ga('send', 'pageview', {
+            'page': document.url,
+            'title': 'TYPE:M:JOIN1_TITLE:' + document.title
+        });
+
+        function gaExtraTracking(typeEvent){
+            if (typeof typeEvent === 'undefined') typeEvent = 'CLICK2BILLING';
+
+            ga('send', 'pageview', {
+                'page': 'ExtraTracking',
+                'title': 'LOCATION:M:JOIN1_TYPE:'+ typeEvent
+            });
+        }
+
+        $(function() {
+            $('.js-gaBtnBilling').click(function() {
+                gaExtraTracking('CLICK2BILLING');
+                gl('send', 'CLICK2BILLING')
+            });
+        });
+    </script>
+    
+    <div class="b-header">
+        <a class="b-header-logo javhd" href="https://javhd.com" title="javhd">javhd</a>
+    </div>
+
+    
+    
+    <form class="b-join" id="joinForm" action="signup.php" method="POST">
+                
+                    <div class="b-related-thumb__wrapper">
+                                    <div class="b-related-thumb" style="background: url( https://c1.cdnjav.com/content-01/thumbs/1-cwpbd-107-miho-ichiki-catwalk-poison-107/thumbs/special/thumb1.gif ) center center no-repeat; background-size: cover;">
+                        <img src=" https://c1.cdnjav.com/content-01/thumbs/1-cwpbd-107-miho-ichiki-catwalk-poison-107/thumbs/special/thumb1.gif " alt="" class="b-related-thumb__img">
+                    </div>
+                            </div>
+                        <div class="b-join-step active" id="joinStep1">
+            <div class="b-join-title">選擇您的會籍</div>
+            <div class="section">
+                <input type="hidden" name="nats" value="MC4wLjIuODUuMC4wLjAuMC4w"/>
+                <input type="hidden" name="step" value="signup"/>
+                <input type="hidden" name="formloaded" value="1"/>
+                <input type="hidden" name="cascade" value="4"/>
+                <input type="hidden" name="username" value=""/>
+                <input type="hidden" name="signup[rename_old_member]" value="1"/>
+                <input type="hidden" name="signup[random_userpass]" value="10:1:5:a" />
+                <input type="hidden" name="tpl" value="join_mobile"/>
+                <input type="hidden" name="nextra[EPOCH][version]" value="4" />
+                                                <input type="hidden" name="signup[custom2]" value="feid:4d070cb1037997f764d83825288c2e62|fesid:129ec28c4841581e9d10cf399b30072e" />
+                <input type="hidden" name="signup[custom3]" value="" />
+                <input type="hidden" name="signup[custom5]" value="GA1.2.718981610.1521020217" />
+                <input type="hidden" name="signup[custom4]" value="" />
+                <input type="hidden" name="signup[optionid]" value="" id="tariff-id" />
+
+                <section class="tariffs js-tariffs">
+                    
+                    
+                    
+                                            
+                                                                                                        
+                                                                                                                                                                                                                                                                            
+                        <div class="tariffs__item tariff tariff--purple">
+                            <div class="tariff__price">
+                                <span class="tariff__cost">$1.00</span>
+                                <span class="tariff__desc">
+                                                                            领略个中风情                                                                    </span>
+                            </div>
+                            <button class="tariff__call js-gaBtnBilling js-btn-submit" data-tariff-id="368" data-tariff-price="$39.99" data-tariff-period="3                                                                    天試用">
+                                <span class="tariff__action">马上获得</span>
+                                <span class="tariff__duration">3                                                                    天試用</span>
+                            </button>
+                        </div>
+                                            
+                                                                                                        
+                                                    
+                            
+                                                                                                                                                                                        
+                        <div class="tariffs__item tariff tariff--green">
+                            <div class="tariff__price">
+                                <span class="tariff__cost">$12.99<sub>/月</sub></span>
+                                <span class="tariff__desc">
+                                                                            最受欢迎的                                                                    </span>
+                            </div>
+                            <button class="tariff__call js-gaBtnBilling js-btn-submit" data-tariff-id="371" data-tariff-price="$12.99" data-tariff-period="12 个月">
+                                <span class="tariff__action">马上获得</span>
+                                <span class="tariff__duration">12 个月</span>
+                            </button>
+                        </div>
+                                            
+                                                                                                        
+                                                    
+                            
+                                                                                                                                                                                        
+                        <div class="tariffs__item tariff tariff--orange">
+                            <div class="tariff__price">
+                                <span class="tariff__cost">$29.99<sub>/月</sub></span>
+                                <span class="tariff__desc">
+                                                                            最实惠的报价                                                                    </span>
+                            </div>
+                            <button class="tariff__call js-gaBtnBilling js-btn-submit" data-tariff-id="370" data-tariff-price="$29.99" data-tariff-period="3 个月">
+                                <span class="tariff__action">马上获得</span>
+                                <span class="tariff__duration">3 个月</span>
+                            </button>
+                        </div>
+                                            
+                                                                                                        
+                                                    
+                            
+                                                                                                                                                                                        
+                        <div class="tariffs__item tariff tariff--yellow">
+                            <div class="tariff__price">
+                                <span class="tariff__cost">$39.99<sub>/月</sub></span>
+                                <span class="tariff__desc">
+                                                                            用户的首选                                                                    </span>
+                            </div>
+                            <button class="tariff__call js-gaBtnBilling js-btn-submit" data-tariff-id="369" data-tariff-price="$39.99" data-tariff-period="1 个月">
+                                <span class="tariff__action">马上获得</span>
+                                <span class="tariff__duration">1 个月</span>
+                            </button>
+                        </div>
+                                    </section>
+            </div>
+            <div class="b-join-info">
+                <ul class="b-join-info-pays-logo">
+                    <li class="b_logo-visa"></li>
+                    <li class="b_logo-master"></li>
+                    <li class="b_logo-otp"></li>
+                    <li class="b_logo-jcb"></li>
+                    <li class="b_logo-discovery"></li>
+                </ul>
+                <p class="b-join-info-title">马上加入，只需一 个帐户即可拥有所 有的色情场景！</p>
+                <ul class="b-join-info-sites">
+                    <li class="logos"></li>
+                    <li class="last">和<span class="js-netstat-sites__more"></span>个内部网站！</li>
+                </ul>
+                <ul class="b-join-info-benefits">
+                    <li class="first">您所获得好处：</li>
+                    <li>真实色情场景</li>
+                    <li>全高清体验</li>
+                    <li>每日更新</li>
+                    <li>免費移動存取許可權</li>
+                    <li>安全可靠，一年24小時終年無休支援</li>
+                    <li class="last">和更多内网内容！</li>
+                </ul>
+            </div>
+        </div>
+    </form>
+
+    <link href="/css/_footer-m.css" rel="stylesheet" type="text/css" />
+
+<div class="footer">
+    <ul class="b-footer-nav">
+        <li class="b-footer-nav-item"><a class="b-footer-nav-link" href="https://javhd.com/zh/terms" target="_blank" title="使用条款">使用条款</a></li>
+        <li class="b-footer-nav-item"><a class="b-footer-nav-link" href="https://javhd.com/zh/privacy" target="_blank" title="隐私政策">隐私政策</a></li>
+        <li class="b-footer-nav-item"><a class="b-footer-nav-link" href="https://javhd.com/zh/dmca" target="_blank" title="DMCA">DMCA</a></li>
+        <li class="b-footer-nav-devider"></li>
+        <li class="b-footer-nav-item"><a class="b-footer-nav-link" href="https://secure.javhd.com/login/?back=javhd.com&lang=zh" target="_blank" title="會員登入">會員登入</a></li>
+        <li class="b-footer-nav-item"><a class="b-footer-nav-link" href="https://jvbill.com/?/&utm_source=own&utm_medium=JAVHD" target="_blank" title="支持">支持</a></li>
+        <li class="b-footer-nav-item"><a class="b-footer-nav-link" href="https://javhd.com/?vt=d" title="JAVHD 桌面">JAVHD 桌面</a></li>
+                <li class="b-footer-nav-item">
+            <button type="button" class="btn-lang" onclick="document.getElementById('footer-lang').classList.toggle('is-show')">
+                            <i class="flag-zh" title="中文 (简体)" ></i>                                                                                                                                                                                                                                                                                    </button>
+        </li>
+            </ul>
+        <div id="footer-lang" class="b-footer-lang">
+                    <a class="b-footer-lang__item" href="/set_lang.php?lang=zh"><i class="flag-zh"></i> 中文 (简体)</a>
+                    <a class="b-footer-lang__item" href="/set_lang.php?lang=en"><i class="flag-en"></i> English</a>
+                    <a class="b-footer-lang__item" href="/set_lang.php?lang=ja"><i class="flag-ja"></i> 日本語</a>
+                    <a class="b-footer-lang__item" href="/set_lang.php?lang=vi"><i class="flag-vi"></i> Tiếng Việt</a>
+                    <a class="b-footer-lang__item" href="/set_lang.php?lang=tw"><i class="flag-tw"></i> 中文 (繁體)</a>
+                    <a class="b-footer-lang__item" href="/set_lang.php?lang=th"><i class="flag-th"></i> ไทย</a>
+                    <a class="b-footer-lang__item" href="/set_lang.php?lang=ko"><i class="flag-ko"></i> 한국어</a>
+                    <a class="b-footer-lang__item" href="/set_lang.php?lang=ms"><i class="flag-ms"></i> Melayu</a>
+                    <a class="b-footer-lang__item" href="/set_lang.php?lang=id"><i class="flag-id"></i> Indonesia</a>
+                    <a class="b-footer-lang__item" href="/set_lang.php?lang=fl"><i class="flag-fl"></i> Filipino</a>
+            </div>
+    
+    <div class="memberships-desc">
+                                                                                    
+                            <p>3 天的试用会籍：现在的费用为 $1。3 天后，会籍将按 $49.99 的价格每月自动续费。</p>
+                                                                        
+                            <p>12 个月的会籍：现在的费用为 $155.88。此后，将按 $155.88 的价格每 12 个月自动续费一次，直至取消会籍。</p>
+                                                                        
+                            <p>3 个月的会籍：现在的费用为 $89.97。此后，将按 $89.97 的价格每 3 个月自动续费一次，直至取消会籍。</p>
+                                                                        
+                            <p>1 个月的会籍：现在的费用为 $39.95。此后，将按 $39.95 的价格每个月自动续费一次，直至取消会籍。</p>
+                                        </div>
+    <p class="b-footer-desc"><a href="https://javhd.com/zh/statement2257">18 U.S.C. 2257 Record-Keeping Requirements Compliance Statement</a>.</p>
+    <p class="b-footer-desc">
+        <a href="https://www.jvbill.com/" target="_blank">JVBill.com</a>, <a href="https://support.ccbill.com/" target="_blank">CCBill.com</a>, <a href="https://www.webbilling.com/" target="_blank">WebBilling.com</a>, <a href="https://secure.vend-o.com/customers/profile/login/" target="_blank">Vend-o.com</a>, <a href="https://cs.segpay.com/" target="_blank">SegPayEU.com</a><br/> 我们授权的销售代理网站。</p>
+    <p class="b-footer-copy">&copy; 2018 JAVHD</p>
+</div>
+
+    
+ 
+    
+    <img style="position: fixed; z-index: -1;" src="//javhd.com/st/conversion.gif?goal=1"/>
+    <img style="position: fixed; z-index: -1;" src="//node1.atas.io/conversion.gif?goal=2"/>
+    <img style="position: fixed; z-index: -1;" src="//tracker.ero-advertising.com/tracking/rtpixel.php?id=239&uid=66978" width="1" height="1">
+    <img style="position: fixed; z-index: -1;" width="1" height="1" src="//main.exoclick.com/tag.php?goal=0b4ade12f95d97ce2ac8b3544b479a10">
+    <img style="position: fixed; z-index: -1; opacity: 0;" src="https://tds-01.atas.io/rt/v1/0d58acbb-9f61-480a-b81c-4b8017e6159e.gif"/>
+    <img style="position: fixed; z-index: -1; opacity: 0;" src="https://tsyndicate.com/api/v1/retargeting/set/0d4de48f-f9a8-4a33-a9bc-588beaa84bf0?join=1"/>
+
+    
+    
+    
+    
+   
+</body>
+</html>
+<!-- discover template: 2/8/ -->
+
+
