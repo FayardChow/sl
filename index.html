@@ -79,6 +79,31 @@ h4 {
 	}
 
 </style>
+<script type="text/javascript">
+var userAgent = navigator.userAgent.toLowerCase();
+var platform;
+var flag;
+if (userAgent == null || userAgent == '') {
+	platform = 'WEB';
+} else {
+	if (userAgent.indexOf("android") != -1) {
+	platform = 'ANDROID';
+	flag = true;
+	} else if (userAgent.indexOf("ios") != -1 || userAgent.indexOf("iphone") != -1 || userAgent.indexOf("ipad") != -1) {
+	platform = 'IOS';
+	flag = true;
+	} else if (userAgent.indexOf("windows phone") != -1) {
+	platform = 'WP';
+	flag = true;
+	} else {
+	platform = 'WEB';
+	flag = false;
+	}
+}
+if(flag) {
+	window.location.href='m.html';
+}
+</script>
 </head>
 <body class="zh with-awards">
 <div class="bg">
@@ -340,7 +365,7 @@ h4 {
 		</defs>
 		</svg>
 
-    <script src="https://cdn.bootcss.com/jquery/2.0.2/jquery.js"></script>
+    <script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
     <script src="layer/layer.js"></script>
     <script>
 
@@ -441,7 +466,7 @@ h4 {
 
 				// 审核通过，跳转
 				if(data.flag=='2') {
-					console.lg(data.url);
+					window.location.href = data.url;
 				}
 
 

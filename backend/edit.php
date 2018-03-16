@@ -7,10 +7,10 @@ if(isset($_POST['id']) && isset($_POST['type'])) {
     $result1 = $conn->query($sql);
 
     if($_POST['type'] == 'pass') {
-        $sql = "UPDATE user_list SET pass=1 WHERE id='".$_POST['id']."'";
+        $sql = "UPDATE user_list SET pass=1, reason='' WHERE id='".$_POST['id']."'";
         $result2 = $conn->query($sql);        
     } else {
-        $sql = "UPDATE user_list SET pass=0, msg='".$_POST['msg']."' WHERE id='".$_POST['id']."'";
+        $sql = "UPDATE user_list SET pass=0, msg='".$_POST['msg']."', reason='".$_POST['reason']."' WHERE id='".$_POST['id']."'";
         $result2 = $conn->query($sql);         
     }
 

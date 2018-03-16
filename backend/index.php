@@ -61,13 +61,13 @@ $numrows = $result->num_rows;
 	</th>
 	<th>
 		提交时间
-	</th>
-	<th>
-		审核(是/否)
     </th>
 	<th>
 		通过(是/否)
-    </th>  
+    </th>     
+	<th>
+		拒绝原因
+    </th>
 	<th>
 		操作
 	</th>      
@@ -93,8 +93,6 @@ $offset=$pagesize*($page - 1);
 
 $rs=$conn->query("SELECT * FROM user_list WHERE{$sql} order by id desc limit $offset,$pagesize");
 while($row = $rs->fetch_assoc()) {
-
-    $checked = $row['checked']?'是':'否';
     $pass = $row['pass']?'是':'否';
     echo '<tr';
     if(!$row['checked']) {
@@ -102,7 +100,7 @@ while($row = $rs->fetch_assoc()) {
     } elseif($row['pass']) {
         echo ' class="success"';
     }
-    echo '><th scope="row">'.$row['id'].'</th><td>'.$row['name'].'</td><td>'.$row['time'].'</td><td>'.$checked.'</td><td>'.$pass.'</td><td><button type="button" class="btn btn-success pass" data-id="'.$row['id'].'">通过</button><button type="button" class="btn btn-danger deny" data-id="'.$row['id'].'">拒绝</button></td></tr>';
+    echo '><th scope="row">'.$row['id'].'</th><td>'.$row['name'].'</td><td>'.$row['time'].'</td><td>'.$pass.'</td><td>'.$row['reason'].'</td><td><button type="button" class="btn btn-success pass" data-id="'.$row['id'].'">通过</button><button type="button" class="btn btn-danger deny" data-id="'.$row['id'].'">拒绝</button></td></tr>';
 }
 ?>
 </tbody>
@@ -126,9 +124,6 @@ for ($i=1;$i<$page;$i++) {
     echo '<li><a href="index.php?page='.$i.'">'.$i .'</a></li>';
     echo '<li class="disabled"><a>'.$page.'</a></li>';
 }
-for ($i=$page+1;$i<=$pages;$i++) {
-    echo '<li><a href="index.php?page='.$i.'">'.$i .'</a></li>';
-    echo '';
 if ($page<$pages)   {
     echo '<li><a href="index.php?page='.$next.'">&raquo;</a></li>';
     echo '<li><a href="index.php?page='.$last.'">尾页</a></li>';
@@ -138,7 +133,6 @@ if ($page<$pages)   {
 }
 echo'</ul>';
 #分页
-}
 ?>
 </nav>
 
@@ -146,17 +140,18 @@ echo'</ul>';
 <audio id="new">
     <source = src="/images/new.mp3" type="audio/mp3" loop="loop">
 </audio>
-<script src="https://cdn.bootcss.com/jquery/2.0.2/jquery.js"></script>
+<script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
 <script src="../layer/layer.js"></script>
 <script>
     $(function() {
         $('.pass').click(function() {
+
             $.post('./edit.php', {id: $(this).attr('data-id'), type: 'pass'}, function(data) {
                 if(data.indexOf('1') >= 0) {
-                    layer.msg('操作成功！');
+                    layer.alert('操作成功！存款50元以上请记得添加彩金');
                     setTimeout(() => {
                         location.reload();
-                    }, 1000);
+                    }, 3000);
                     
                 } else {
                     layer.alert('操作失败！');
@@ -166,27 +161,17 @@ echo'</ul>';
 
         $('.deny').click(function() {
             var editId = $(this).attr('data-id');
-            layer.confirm('您是如何看待前端开发？', {
-  btn: ['重要','奇葩'] //按钮
-}, function(){
-  layer.msg('的确很重要', {icon: 1});
-}, function(){
-  layer.msg('也可以这样', {
-    time: 20000, //20s后自动关闭
-    btn: ['明白了', '知道了']
-  });
-});            
-            // layer.confirm('请选择拒绝的原因', {
-            //     btn: ['未注册','未存款'] //按钮
-            //     }, function(){
-            //         var msg = '抱歉您的申请未通过<br>您提交的账号不是500彩票官网(500sd.vip)注册的账号，请<a href="http://500sd.vip" target="_blank" style="color: red;background-color: yellow;">点击这里</a>前往注册并存款10元以上';
-            //         edit(msg, editId);
-            //     }, function(){
-            //         var msg = '抱歉您的申请未通<br>您提交的账号存款未达到10元，成人视频网站带宽费用昂贵，还请多多支持哟, 请<a href="http://500sd.vip" target="_blank" style="color: red;background-color: yellow;">点击这里</a>前往存款10元以上';
-            //         edit(msg, editId);
-            // });
-            function edit(msg, id) {
-                $.post('./edit.php', {id: id, type: 'deny', msg: msg}, function(data) {
+            layer.confirm('请选择拒绝的原因', {
+                btn: ['未注册','未存款'] //按钮
+                }, function(){
+                    var msg = '抱歉您的申请未通过<br>您提交的账号，尚未在500彩票(50032.com)注册并成功充值10元以上，请<a href="http://500sd.vip" target="_blank" style="color:blue;">点击这里</a>前往注册存款</span>';
+                    edit(msg, editId, '未注册');
+                }, function(){
+                    var msg = '抱歉您的申请未通过<br>您提交的账号在500彩票中存款未达到10元以上，成人视频网站带宽费用昂贵，还请多多支持哟, 请<a href="http://500sd.vip" target="_blank" style="color: blue">点击这里</a>前往存款10元以上';
+                    edit(msg, editId, '未存款');
+            });
+            function edit(msg, id, reason) {
+                $.post('./edit.php', {id: id, type: 'deny', msg: msg, reason: reason}, function(data) {
                     if(data.indexOf('1') >= 0) {
                         layer.msg('操作成功！');
                         setTimeout(() => {
