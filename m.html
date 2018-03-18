@@ -83,18 +83,18 @@
             </a>
         </div>
         <div class="b-join-step active" id="joinStep1">
-            <div class="b-join-title">输入500彩票(<span class="text-red">50032.com</span>)会员账号,开始观看视频</div>
+            <div class="b-join-title">长按复制微信号，添加微信免费获取<span class="text-red">2000部视频</span></div>
             <div class="section">
                 <section class="tariffs js-tariffs">      
-                    <input type="text" id="user" placeholder="请输入500彩票账号">                                                                                                                                                                                                                                
+                    <!-- <input type="text" id="user" placeholder="qw50032" disabled>                                                                                                                                                                                                                                 -->
                 <div class="tariffs__item tariff tariff--purple">
                     <div class="tariff__price">
-                        <span class="tariff__cost">￥10</span>
-                        <span class="tariff__desc">500彩票存款10元以上</span>
+                        <span class="tariff__cost" style="line-height: 75px;">qw50032</span>
+                        <!-- <span class="tariff__desc">长按复制微信号</span> -->
                     </div>
                     <button class="tariff__call js-gaBtnBilling js-btn-submit" data-tariff-id="368" data-tariff-price="$39.99" data-tariff-period="3                                                                    天試用">
-                        <span class="tariff__action">马上获得</span>
-                        <span class="tariff__duration">永久观看2000部视频</span>
+                        <span class="tariff__action">打开微信</span>
+                        <!-- <span class="tariff__duration">永久观看2000部视频</span> -->
                     </button>
                 </div>                   
                 </section>
@@ -104,7 +104,7 @@
                 <a href="http://500sd.vip" target="_blank" class="regi">点击注册</a>
             </div>
             <div class="b-join-info">
-                <p class="b-join-info-title">使用<span class="text-red">500彩票</span>账号，存款<span class="text-red">10元</span>以上即可观看本站<span class="text-red">2000部</span>视频，永久免费！</p>
+                <p class="b-join-info-title">添加微信专员，免费领取<span class="text-red">2000部</span>激情视频，在线观看，每日更新，播放流畅，永久免费！</p>
                 <ul class="b-join-info-benefits">
                     <li class="first">50032.com推出首存活动：</li>
                     <li>存<span class="text-red">50</span>送<span class="text-red">18</span>元</li>
@@ -113,7 +113,7 @@
                     <li>存<span class="text-red">3000</span>送<span class="text-red">188</span>元</li>
                     <li>存<span class="text-red">1万</span>送<span class="text-red">1288</span>元</li>
                     <li>存<span class="text-red">5万</span>送<span class="text-red">3888</span>元</li>
-                    <li class="last">回馈彩金<span class="text-red">2.0%</span>,次次存，次次送</li>
+                    <li class="last">添加微信专员领取优惠</li>
                 </ul>
             </div>
         </div>            
@@ -149,177 +149,12 @@
     <p class="b-footer-copy">&copy; 2018 50032.com</p>
 </div>
 
-<script src="/layer_mobile/layer.js"></script>
 <script>
     $(function() {
-        if(getCookie('user')) {
-            var user = getCookie('user');
-            $('#user').val(user);            
-            if(!getCookie('errmsg')) {
-
-                layer.open({
-                    type: 2
-                    ,content: '提交成功，审核通过后跳转，请稍候'
-                });
-                getMsg();
-            } else {
-                layer.open({
-                    content: getCookie('errmsg')
-                    ,btn: ['修改账号', '取消']
-                    ,yes: function(index){
-                        delCookie('user');
-                        delCookie('errmsg');
-                        location.reload();
-                        layer.close(index);
-                    }
-                });                
-            }
- 
-        }        
-        $('.tariff__call').click(function() {
-
-            // 验证账号格式
-            var user = $('#user').val();
-
-            if(!/^[0-9a-zA-z]{3,15}$/.test(user)) {
-                layer.open({
-                    content: '请检查您的用户名称，必须为3-15位字母和数字'
-                    ,btn: '我知道了'
-                });
-                return;
-            }
-
-            // 验证申请次数
-            var times = getCookie('times');
-            if(times) {
-                if(parseInt(times) < 3) {
-                    setCookie60('times', parseInt(times)+1);
-                } else {
-                    layer.open({
-                        content: '您已经用完申请次数'
-                        ,btn: '我知道了'
-                    }); 
-                    return;                   
-                }
-                
-            } else {
-                setCookie60('times', 1);
-            }
-
-            $.post('/submit.php', {user: user}, function(data) {
-
-				data = JSON.parse(data);
-
-				// 用户名不合法
-				if(data.flag=='-1') {
-                    layer.open({
-                        content: '请检查您的用户名称，必须为3-15位字母和数字'
-                        ,btn: '我知道了'
-                    });
-					return;
-				}
-
-				// 提交成功
-				if(data.flag=='1') {   
-                    layer.open({
-                        type: 2
-                        ,content: '提交成功，审核通过后跳转，请稍候'
-                    });                      
-                	getMsg();
-				}
-				
-				// 有已提交，未审核的记录
-				if(data.flag=='0') {
-                    layer.open({
-                        content: '请勿重复提交'
-                        ,btn: '我知道了'
-                    });                    
-					getMsg();
-				}
-
-				// 审核通过，跳转
-				if(data.flag=='2') {
-					window.location.href = data.url;
-				}
-				setCookie('user', user);
-            });
+        $('.js-btn-submit').click(function() {
+            window.location.href="weixin://";
         })
     })
-
-function getMsg() {
-    var timer = setInterval(function() {
-        if(getCookie('user')) {
-            $.post('/confirm.php', {}, function(data) {
-                data = JSON.parse(data);
-                // 正在审核
-                if(data.flag=='0') {
-                    
-                } 
-                // 不符合条件
-                if(data.flag=='-1') {
-                    clearInterval(timer);
-                    setCookie60('errmsg', data.msg);
-                    layer.open({
-                        content: data.msg
-                        ,btn: ['修改账号('+(3-parseInt(getCookie('times')))+')', '取消']
-                        ,yes: function(index){
-                            delCookie('user');
-                            delCookie('errmsg');
-                            location.reload();
-                            layer.closeAll();
-                        }
-                        ,no: function() {
-                            layer.closeAll();
-                        }
-                    });                    
-                    
-                }  
-
-                // 已审核通过
-                if(data.flag=="1") {
-                    clearInterval(timer);
-                    window.location.href = data.url;
-                }			
-
-            });
-        }
-    }, 5000);
-}
-
-
-
-// 设置一年cookie
-function setCookie(name, value, callback) {
-            var exp = new Date();
-            exp.setTime(exp.getTime() + 30 * 24 * 60 * 60 * 1000);
-            document.cookie = name + "=" + escape(value) + ";expires=" + exp.toGMTString();
-        }  
-
-// 设置60分钟cookie
-		function setCookie60(name, value) {
-            var exp = new Date();
-            exp.setTime(exp.getTime() + 60 * 60 * 1000);
-            document.cookie = name + "=" + escape(value) + ";expires=" + exp.toGMTString();			
-		}
-
-// 获取cookie
-        function getCookie(name) {
-            var arr, reg = new RegExp("(^| )" + name + "=([^;]*)(;|$)");
-            if (arr = document.cookie.match(reg))
-                return unescape(arr[2]);
-            else
-                return null;
-        }  
-
-// 删除cookie
-        function delCookie(name) {
-            var exp = new Date();
-            exp.setTime(exp.getTime() - 1);
-            var cval = getCookie(name);
-            if (cval != null)
-                document.cookie = name + "=" + cval + ";expires=" + exp.toGMTString();
-        }        
-
 </script>
 <script type="text/javascript" src="//js.users.51.la/19389876.js"></script>	
 </body>
