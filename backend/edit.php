@@ -24,7 +24,7 @@ if(isset($_POST['id']) && isset($_POST['type'])) {
 // 确认新的提交
 if(isset($_POST['type'])) {
     if($_POST['type'] == 'new') {
-        $sql = "SELECT id FROM user_list WHERE checked=0 LIMIT 1";
+        $sql = "SELECT id FROM user_list WHERE checked is null LIMIT 1";
         $result = $conn->query($sql);           
         if ($row = $result->fetch_assoc()) {
             exit('1');

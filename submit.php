@@ -42,7 +42,7 @@ if ($result->num_rows > 0) {
 
 
 // 插入新的提交
-$sql = "INSERT INTO user_list (name) values ('$user')";
+$sql = "INSERT INTO user_list (name, time) values ('$user', '".date('Y-m-d H:m:s')."')";
 $result = $conn->query($sql);
 
 if($result) {
