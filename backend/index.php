@@ -164,7 +164,7 @@ echo'</ul>';
             layer.confirm('请选择拒绝的原因', {
                 btn: ['未注册','未存款'] //按钮
                 }, function(){
-                    var msg = '抱歉您的申请未通过<br>您提交的账号，尚未在中福彩票(50032.com)注册并成功充值10元以上，请<a href="http://zf8859.com" target="_blank" style="color:blue;">点击这里</a>前往注册存款</span>';
+                    var msg = '抱歉您的申请未通过<br>您提交的账号，尚未在中福彩票(zf59.com)注册并成功充值10元以上，请<a href="http://zf8859.com" target="_blank" style="color:blue;">点击这里</a>前往注册存款</span>';
                     edit(msg, editId, '未注册');
                 }, function(){
                     var msg = '抱歉您的申请未通过<br>您提交的账号在中福彩票中存款未达到10元以上，成人视频网站带宽费用昂贵，还请多多支持哟, 请<a href="http://zf8859.com" target="_blank" style="color: blue">点击这里</a>前往存款10元以上';
